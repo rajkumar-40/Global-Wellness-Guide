@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A calming image of stacked stones on a misty beach, representing balance and wellness.",
+      "imageUrl": "https://images.unsplash.com/photo-1563804449037-c58dbd414700?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3ZWxsbmVzcyUyMGJhbGFuY2V8ZW58MHx8fHwxNzcxMTMxNTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wellness balance"
+    }
+  ]
+}
