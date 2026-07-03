@@ -15,7 +15,6 @@ import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Logo } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 
 type PageProps = {
@@ -86,7 +85,14 @@ export default function Home(props: PageProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-foreground">
             <div className="bg-background/80 backdrop-blur-sm p-4 rounded-full mb-4 shadow-lg">
-              <Logo className="h-16 w-16 text-primary-foreground" />
+              <Image
+                src="/images/logo-ganpati-saraswati.png"
+                alt="Ganpati Bappa and Saraswati Mata logo"
+                width={96}
+                height={96}
+                className="h-24 w-24 rounded-full object-cover"
+                priority
+              />
             </div>
             <h1 className="font-headline text-4xl md:text-6xl font-bold tracking-tight">
               Global Wellness Guide

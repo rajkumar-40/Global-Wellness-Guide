@@ -1,5 +1,5 @@
 
-import { Logo } from './icons';
+import Image from 'next/image';
 import { Twitter, Github, Linkedin } from 'lucide-react';
 import { Separator } from './ui/separator';
 import { CurrentYear } from './current-year';
@@ -10,7 +10,13 @@ export function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
-            <Logo className="h-8 w-8 text-primary-foreground" />
+            <Image
+              src="/images/logo-ganpati-saraswati.png"
+              alt="Ganpati Bappa and Saraswati Mata logo"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-full object-cover"
+            />
             <span className="font-headline text-xl font-semibold text-primary-foreground">
               Global Wellness Guide
             </span>
