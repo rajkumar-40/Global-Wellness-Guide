@@ -170,6 +170,44 @@ export function RecoveryPlanDisplay({
     }
   };
 
+  // --- New: Append additional therapy guidance for health-related plans on frontend only ---
+  const healthKeywords = [
+    'diet',
+    'recover',
+    'recovery',
+    'injury',
+    'therapy',
+    'rehab',
+    'post-op',
+    'wound',
+    'heal',
+    'surgery',
+    'pain',
+  ];
+
+  const containsHealthKeyword = healthKeywords.some(k => new RegExp(`\\b${k}\\b`, 'i').test(plan));
+
+  const alreadyHasDrBRC = /Dr\.?\s*BRC/i.test(plan);
+  const alreadyHasBrahmand = /Brahmand\s*Rushi|Vaidic/i.test(plan);
+
+  let displayPlan = plan;
+
+  if (containsHealthKeyword && !(alreadyHasDrBRC && alreadyHasBrahmand)) {
+    let additionalContent = '\n\n---\n### Additional therapy — Dr. BRC\nA concise complementary therapy by Dr. BRC to support nutrition-led recovery, sleep, and gentle mobilization. For the full plan and recovery method, see: /docs/diet-plans/dr-brc-health-diet-plan.md\n\n';
+
+    // Brahmand Rushi Vaidic Therapy summary (longevity-focused)
+    if (!alreadyHasBrahmand) {
+      additionalContent += '### Brahmand Rushi Vaidic Therapy — Longevity Method\n- Emphasizes daily routines (dinacharya) that align with circadian rhythm and digestive health.\n- Practices include gentle pranayama (breathwork), short guided meditation, mindful eating, and light joint mobility.\n- Supportive herbal and dietary suggestions focus on balancing digestion, reducing inflammation, and promoting restorative sleep.\n- Intended as a complementary longevity approach — not a substitute for medical treatment. Consult a licensed practitioner for personalized guidance.\n\n';
+    }
+
+    // Add a short disclaimer if not present
+    if (!/Disclaimer:/.test(plan)) {
+      additionalContent += 'Disclaimer: The additional therapies listed are educational and complementary. They are not a replacement for professional medical care. If you have a serious medical condition, consult your healthcare provider before making changes.\n';
+    }
+
+    displayPlan = plan + additionalContent;
+  }
+
   return (
     <Card className="shadow-2xl shadow-primary/10 animate-in fade-in-50 slide-in-from-bottom-10 duration-500 rounded-2xl">
       <CardHeader className="bg-card/50 rounded-t-2xl p-6 border-b border-primary/20">
@@ -193,7 +231,7 @@ export function RecoveryPlanDisplay({
         </div>
       </CardHeader>
       <CardContent className="p-6 md:p-10">
-        <MarkdownRenderer content={plan} />
+        <MarkdownRenderer content={displayPlan} />
 
         <Separator className="my-12" />
 
