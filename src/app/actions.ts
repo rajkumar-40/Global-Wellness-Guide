@@ -1,4 +1,3 @@
-
 'use server';
 
 import { z } from 'zod';
@@ -12,11 +11,11 @@ import { GoogleGenAI } from '@google/genai';
 export async function generatePlanAction(
   data: z.infer<typeof IntakeFormSchema>
 ) {
-  if (!process.env.AIzaSyAZ5Y5voEqGw9vvsuJIAypl2YkBy5FoXxs) {
+  if (!process.env.GOOGLE_GENAI_API_KEY) {
     throw new Error('API config is missing. Please set GOOGLE_GENAI_API_KEY in your environment.');
   }
 
-  const ai = new GoogleGenAI({ apiKey: process.env.AIzaSyAZ5Y5voEqGw9vvsuJIAypl2YkBy5FoXxs });
+  const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENAI_API_KEY });
   
   const prompt = `System: You are a premier holistic health expert and advanced clinical analyst. You possess deep expertise in biological systems, from microcellular health to major organ function. 
 You are an expert blood, urine, and stool analyzer, capable of identifying patterns that indicate underlying imbalances or health conditions.
