@@ -71,6 +71,41 @@ export default function Home(props: PageProps) {
     }
   };
 
+  // Razorpay Checkout Integration
+  const handlePaymentAndDownload = () => {
+    // Razorpay Checkout Script डायनॅमिकली लोड करणे
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.onload = () => {
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: 15000, // ₹150 (पैशांमध्ये)
+        currency: 'INR',
+        name: 'Global Wellness Guide',
+        description: 'Wellness Plan PDF Download Charges',
+        handler: function (response: any) {
+          if (response.razorpay_payment_id) {
+            toast({
+              title: 'Payment Successful!',
+              description: 'तुमचे पेमेंट प्राप्त झाले आहे. रिपोर्ट डाउनलोड होत आहे.',
+            });
+            window.print();
+          }
+        },
+        prefill: {
+          name: 'User',
+        },
+        theme: {
+          color: '#27ae60',
+        },
+      };
+
+      const paymentObject = new (window as any).Razorpay(options);
+      paymentObject.open();
+    };
+    document.body.appendChild(script);
+  };
+
   const heroImage = PlaceHolderImages.find(img => img.id === 'hero');
 
   const handleFormSubmit = async (data: z.infer<typeof IntakeFormSchema>) => {
@@ -175,11 +210,18 @@ export default function Home(props: PageProps) {
               Analysis Complete
             </h2>
             <p className="text-muted-foreground mt-2 mb-8">
-              Your personalized plan is ready below. You can start a new analysis anytime.
+              Your personalized plan is ready below. You can start a new analysis or download your plan.
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button onClick={handleStartOver} variant="outline" size="lg">
                 Start New Analysis
+              </Button>
+              <Button 
+                onClick={handlePaymentAndDownload} 
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+                size="lg"
+              >
+                💳 Pay ₹150 & Download PDF Plan
               </Button>
             </div>
           </div>
