@@ -71,9 +71,29 @@ export default function Home(props: PageProps) {
     }
   };
 
+  // Organic Self-Marketing & Social Share Handler
+  const handleSharePlatform = (platform: string) => {
+    const shareUrl = encodeURIComponent(window.location.origin);
+    const shareText = encodeURIComponent(
+      '🏥 Global Wellness Guide - Get your AI-powered personalized health & holistic wellness plan instantly!'
+    );
+
+    let targetUrl = '';
+    if (platform === 'whatsapp') {
+      targetUrl = `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`;
+    } else if (platform === 'twitter') {
+      targetUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+    } else if (platform === 'facebook') {
+      targetUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    }
+
+    if (targetUrl) {
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   // Razorpay Checkout Integration
   const handlePaymentAndDownload = () => {
-    // Razorpay Checkout Script डायनॅमिकली लोड करणे
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.onload = () => {
@@ -144,7 +164,7 @@ export default function Home(props: PageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
-      {/* 📲 PWA ॲप इंस्टॉल बटण (मोबाईल/ब्राऊझरवर सपोर्ट असल्यास दिसेल) */}
+      {/* 📲 PWA ॲप इंस्टॉल बटण */}
       {showInstallBtn && (
         <div className="max-w-4xl mx-auto mb-6 p-4 bg-emerald-50 border border-emerald-500 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-md">
           <div className="text-center md:text-left">
@@ -209,10 +229,10 @@ export default function Home(props: PageProps) {
             <h2 className="font-headline text-3xl font-semibold text-primary-foreground">
               Analysis Complete
             </h2>
-            <p className="text-muted-foreground mt-2 mb-8">
+            <p className="text-muted-foreground mt-2 mb-6">
               Your personalized plan is ready below. You can start a new analysis or download your plan.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
               <Button onClick={handleStartOver} variant="outline" size="lg">
                 Start New Analysis
               </Button>
@@ -223,6 +243,36 @@ export default function Home(props: PageProps) {
               >
                 💳 Pay ₹150 & Download PDF Plan
               </Button>
+            </div>
+
+            {/* 🔥 Self-Promotion & Organic Viral Engine Buttons */}
+            <div className="pt-6 border-t border-border">
+              <p className="text-sm font-medium text-muted-foreground mb-3">
+                📢 Share Global Wellness Guide with friends & family:
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Button 
+                  onClick={() => handleSharePlatform('whatsapp')} 
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm"
+                  size="sm"
+                >
+                  📲 Share on WhatsApp
+                </Button>
+                <Button 
+                  onClick={() => handleSharePlatform('twitter')} 
+                  className="bg-sky-500 hover:bg-sky-600 text-white font-semibold text-sm"
+                  size="sm"
+                >
+                  🐦 Share on X (Twitter)
+                </Button>
+                <Button 
+                  onClick={() => handleSharePlatform('facebook')} 
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm"
+                  size="sm"
+                >
+                  📘 Share on Facebook
+                </Button>
+              </div>
             </div>
           </div>
         )}
