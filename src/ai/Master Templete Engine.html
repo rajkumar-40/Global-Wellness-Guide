@@ -1,0 +1,90 @@
+<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; color: #2c3e50; line-height: 1.6;">
+
+  <!-- Header & Disclaimer -->
+  <div style="background-color: #f8f9fa; border-left: 5px solid #27ae60; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+    <h1 style="margin: 0 0 10px 0; color: #27ae60; font-size: 24px;">तुमचा वैयक्तिकृत नैसर्गिक आरोग्य आराखडा</h1>
+    <p style="margin: 0; font-size: 13px; color: #7f8c8d;"><b>महत्त्वाची सूचना:</b> हा प्लॅटफॉर्म केवळ शैक्षणिक व आरोग्य मार्गदर्शनासाठी आहे. यात कोणत्याही ॲलोपॅथी औषधांचा समावेश नाही. उपचारांचा निर्णय पूर्णपणे वापरकर्त्याचा असेल.</p>
+  </div>
+
+  <!-- 1. Root Cause & Condition Analysis -->
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 18px; margin-bottom: 20px; background-color: #ffffff;">
+    <h2 style="color: #2c3e50; font-size: 18px; border-bottom: 2px solid #27ae60; padding-bottom: 5px;">१. आजाराचे मूळ कारण व जैविक विश्लेषण (Root Cause Analysis)</h2>
+    <p><b>आजाराचे नाव / लक्षणे:</b> {{User_Input_Disease}}</p>
+    <p><b>आयुर्वेदानुसार मूळ कारण:</b> {{Root_Cause_Explanation_Dosha}}</p>
+    <p><b>आजाराची मूळ पाळेमुळे:</b> हा आजार फक्त वरवरचा नसून {{Detailed_Internal_Reason}} मुळे झाला आहे. यावर योग्य आयुर्वेदिक व नैसर्गिक नियम पाळल्यास हा मुळापासून उखडून टाकला जाऊ शकतो.</p>
+  </div>
+
+  <!-- 2. Trust Building & Recovery Timeline -->
+  <div style="background-color: #e8f8f5; border: 1px solid #a3e4d7; border-radius: 8px; padding: 18px; margin-bottom: 20px;">
+    <h2 style="color: #16a085; font-size: 18px; margin-top: 0;">२. संपूर्ण रिकव्हरी आणि वेळेचा अंदाज (Recovery Timeline)</h2>
+    <ul>
+      <li><b>प्राथमिक फरक (Initial Relief):</b> {{Initial_Days}} दिवसांत लक्षणे कमी होण्यास सुरुवात होईल.</li>
+      <li><b>शरीराचे डिटॉक्स व मूळ सुधारणा:</b> {{Detox_Days}} दिवसांत पेशींची दुरुस्ती होईल.</li>
+      <li><b>संपूर्ण रिकव्हरी (Complete Root Removal):</b> <b>{{Total_Recovery_Days}} दिवस</b> (मार्गदर्शनाचे तंतोतंत व सातत्याने पालन केल्यास आजार मुळापासून बरा होईल).</li>
+    </ul>
+  </div>
+
+  <!-- 3. Precise Time-Based Schedule Table -->
+  <h2 style="color: #2c3e50; font-size: 18px; border-bottom: 2px solid #27ae60; padding-bottom: 5px;">३. दैनंदिन उपचार व उत्पादन वेळापत्रक (Daily Treatment Matrix)</h2>
+  <table style="width:100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
+    <thead>
+      <tr style="background-color: #27ae60; color: white;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">वेळ</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">आयुर्वेदिक उपाय / औषध</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">प्रमाण (Dose)</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">घेण्याची पद्धत</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">शरीरावरील कार्य (फायदा)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><b>सकाळी ६:०० (उपाशीपोटी)</b></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_1_Name}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_1_Dose}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_1_HowToTake}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_1_Benefit}}</td>
+      </tr>
+      <tr style="background-color: #f9f9f9;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><b>सकाळी ८:३० (नाश्त्यानंतर)</b></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_2_Name}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_2_Dose}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_2_HowToTake}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_2_Benefit}}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><b>दुपारी २:०० (जेवणानंतर)</b></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_3_Name}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_3_Dose}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_3_HowToTake}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_3_Benefit}}</td>
+      </tr>
+      <tr style="background-color: #f9f9f9;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><b>रात्री ९:०० (झोपण्यापूर्वी)</b></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_4_Name}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_4_Dose}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_4_HowToTake}}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">{{Remedy_4_Benefit}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 4. Optional Homeopathy Option -->
+  <div style="border: 1px dashed #2980b9; background-color: #ebf5fb; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+    <h3 style="color: #2980b9; margin-top: 0; font-size: 16px;">वैकल्पिक होमिओपॅथी पर्याय (Optional Support)</h3>
+    <p style="font-size: 14px; margin-bottom: 5px;">तुम्हाला आयुर्वेदिक उपचारांसोबत किंवा स्वतंत्रपणे होमिओपॅथी वापरायची असल्यास:</p>
+    <ul>
+      <li><b>{{Homeo_Medicine_1}}:</b> {{Homeo_Dose_1}} - {{Homeo_Reason_1}}</li>
+      <li><b>{{Homeo_Medicine_2}}:</b> {{Homeo_Dose_2}} - {{Homeo_Reason_2}}</li>
+    </ul>
+  </div>
+
+  <!-- 5. Dietary Rules & Encouragement -->
+  <div style="background-color: #fdfefe; border: 1px solid #d5dbdb; padding: 15px; border-radius: 8px;">
+    <h3 style="color: #c0392b; margin-top: 0; font-size: 16px;">पथ्य व वर्ज्य गोष्टी (Dietary Rules)</h3>
+    <p><b>काय खावे:</b> {{Pathya_Allowed}}</p>
+    <p><b>काय टाळावे:</b> {{Pathya_Avoid}}</p>
+    <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+    <p style="color: #27ae60; font-weight: bold; text-align: center; margin: 0;">"योग्य आहार आणि निसर्गावर विश्वास ठेवल्यास शरीर स्वतःला पूर्ववत दुरुस्त करू शकते!"</p>
+  </div>
+
+</div>
