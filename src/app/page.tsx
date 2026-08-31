@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useState, useRef, use } from 'react';
+import { useState, useRef, use, useEffect } from 'react';
 import type { z } from 'zod';
 import {
   IntakeForm,
@@ -24,7 +23,7 @@ type PageProps = {
 };
 
 export default function Home(props: PageProps) {
-  // Properly unwrap params and searchParams for Next.js 15 compatibility
+  // Next.js 15 सुसंगततेसाठी अनव्रॅप करा
   use(props.params);
   use(props.searchParams);
 
@@ -32,6 +31,45 @@ export default function Home(props: PageProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // PWA Install Prompt स्टेट्स
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallBtn, setShowInstallBtn] = useState(false);
+
+  useEffect(() => {
+    // 1. PWA सर्व्हिस वर्कर नोंदणी
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch((err) => {
+        console.log('Service Worker registration failed: ', err);
+      });
+    }
+
+    // 2. Install Prompt इव्हेंट कॅप्चर करणे
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallBtn(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallClick = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult: { outcome: string }) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('युझरने ॲप इंस्टॉल स्वीकारले.');
+        }
+        setDeferredPrompt(null);
+        setShowInstallBtn(false);
+      });
+    }
+  };
 
   const heroImage = PlaceHolderImages.find(img => img.id === 'hero');
 
@@ -71,6 +109,26 @@ export default function Home(props: PageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
+      {/* 📲 PWA ॲप इंस्टॉल बटण (मोबाईल/ब्राऊझरवर सपोर्ट असल्यास दिसेल) */}
+      {showInstallBtn && (
+        <div className="max-w-4xl mx-auto mb-6 p-4 bg-emerald-50 border border-emerald-500 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-md">
+          <div className="text-center md:text-left">
+            <p className="font-semibold text-emerald-900">
+              📲 Global Wellness Guide ॲप मोबाईलमध्ये इंस्टॉल करा
+            </p>
+            <p className="text-xs text-emerald-700">
+              ऑफलाईन किंवा जलद वापरासाठी होम स्क्रीनवर जोडा.
+            </p>
+          </div>
+          <Button 
+            onClick={handleInstallClick}
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+          >
+            Install App
+          </Button>
+        </div>
+      )}
+
       <section className="text-center mb-12 md:mb-16">
         <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl shadow-primary/20 mb-8">
           {heroImage && (
