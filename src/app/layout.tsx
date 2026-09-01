@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const fontBody = Alegreya({
   subsets: ['latin'],
@@ -131,6 +132,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <Toaster />
+        <SpeedInsights />
       </body>
     </html>
   );
